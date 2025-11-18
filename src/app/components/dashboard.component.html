@@ -1,0 +1,103 @@
+<main id="main-content" class="flex-1 overflow-auto">
+      <!-- Header -->
+      <header id="header" class="border-b border-neutral-200 bg-white sticky top-0 z-10">
+        <div class="px-8 py-4 flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl text-neutral-900">3-Role Approval Workflow</h1>
+            <p class="text-sm text-neutral-500 mt-1">Manage document approval process with three-stage verification</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="px-4 py-2 border border-neutral-200 rounded-lg text-sm hover:bg-neutral-50">
+              <i class="mr-2" data-fa-i2svg=""><svg class="svg-inline--fa fa-download" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"></path></svg></i>
+              Export
+            </button>
+            <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg text-sm hover:bg-neutral-800">
+              <i class="mr-2" data-fa-i2svg=""><svg class="svg-inline--fa fa-plus" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"></path></svg></i>
+              New Document
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-8">
+        <!-- Workflow Steps Overview -->
+        <section id="workflow-steps" class="mb-8">
+          <div class="grid grid-cols-3 gap-6">
+            <div class="border border-neutral-200 rounded-lg p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-neutral-200 rounded-full flex items-center justify-center">
+                  <span class="text-lg">1</span>
+                </div>
+                <h3 class="text-lg">Document Setup</h3>
+              </div>
+              <p class="text-sm text-neutral-600 mb-4">Upload and configure documents for approval workflow</p>
+              <div class="flex items-center gap-2 text-sm">
+                <i class="text-neutral-400" data-fa-i2svg=""><svg class="svg-inline--fa fa-clock" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg></i>
+                <span class="text-neutral-600">Pending: 12</span>
+              </div>
+            </div>
+
+            <div class="border border-neutral-200 rounded-lg p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-neutral-200 rounded-full flex items-center justify-center">
+                  <span class="text-lg">2</span>
+                </div>
+                <h3 class="text-lg">First Approver</h3>
+              </div>
+              <p class="text-sm text-neutral-600 mb-4">Initial review and approval by department head</p>
+              <div class="flex items-center gap-2 text-sm">
+                <i class="text-neutral-400" data-fa-i2svg=""><svg class="svg-inline--fa fa-clock" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg></i>
+                <span class="text-neutral-600">In Review: 8</span>
+              </div>
+            </div>
+
+            <div class="border border-neutral-200 rounded-lg p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-neutral-200 rounded-full flex items-center justify-center">
+                  <span class="text-lg">3</span>
+                </div>
+                <h3 class="text-lg">Second Approver</h3>
+              </div>
+              <p class="text-sm text-neutral-600 mb-4">Final approval by senior management</p>
+              <div class="flex items-center gap-2 text-sm">
+                <i class="text-neutral-400" data-fa-i2svg=""><svg class="svg-inline--fa fa-clock" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg></i>
+                <span class="text-neutral-600">Final Review: 5</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stage 1: Document Setup List -->
+        <section id="stage-1" class="mb-8">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl">Stage 1: Document Setup List</h2>
+            <div class="flex items-center gap-2">
+              <input type="text" placeholder="Search documents..." class="px-4 py-2 border border-neutral-200 rounded-lg text-sm w-64">
+              <button class="px-4 py-2 border border-neutral-200 rounded-lg text-sm hover:bg-neutral-50">
+                <i data-fa-i2svg=""><svg class="svg-inline--fa fa-filter" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="filter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"></path></svg></i>
+              </button>
+            </div>
+          </div>
+          <app-document-list [documents]="documents"></app-document-list>
+        </section>
+
+        <!-- Stage 2: First Approver -->
+        <section id="stage-2" class="mb-8">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl">Stage 2: First Approver Review</h2>
+            <div class="flex items-center gap-2 text-sm text-neutral-600">
+              <i data-fa-i2svg=""><svg class="svg-inline--fa fa-user-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM625 177L497 305c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L591 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg></i>
+              <span>Department Head Approval</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stage 3: Second Approver -->
+        <section id="stage-3">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl">Stage 3: Second Approver Review</h2>
+            </div>
+        </section>
+        <app-document-submission></app-document-submission>
+      </div>
+    </main>
