@@ -91,3 +91,57 @@ This phase focuses on "wiring up" the application. We will replace static mock d
       REJECTED = 'REJECTED'
     }
     ```
+
+## Phase 3: End-to-End Workflow Simulation
+
+This phase focuses on the user journey. We will implement the UI mechanisms that allow a single developer/user to simulate the entire multi-user process. This involves creating a robust "Role Switcher" and ensuring the views update instantly as the document moves through the pipeline.
+
+### Objectives
+* Validate the sequential logic: Submitter $\rightarrow$ Approver 1 $\rightarrow$ Approver 2.
+* Implement a "Role Switcher" to act as different users without re-logging.
+* Provide visual feedback when a document moves from one stage to the next.
+
+### Steps for Phase 3
+
+1.  **Implement the Role Switcher Component:**
+    * Create a global component (e.g., in the Navbar) containing a dropdown menu.
+    * **Options:** "Log in as Alice (Submitter)", "Log in as Bob (Approver 1)", "Log in as Charlie (Approver 2)".
+    * **Logic:** When an option is selected, update the `currentUser` state in the `DocumentService` and trigger a refresh of the Dashboard view.
+
+2.  **Step A: The Submitter Experience (Creation):**
+    * **Action:** User selects "Alice (Submitter)" via the Role Switcher.
+    * **View:** Access the `DocumentSubmissionComponent`.
+    * **Process:** Fill out the form and click "Submit."
+    * **Result:**
+        * The document is added to the central store.
+        * Status is set to `PENDING_FIRST_APPROVAL`.
+        * The user is redirected to "My Submissions" list where the new card appears with a yellow "Pending" badge.
+
+3.  **Step B: The First Approver Experience (Transition):**
+    * **Action:** User switches role to "Bob (Approver 1)."
+    * **View:** The Dashboard automatically filters to show only documents with status `PENDING_FIRST_APPROVAL`.
+    * **Process:** Locate the document created by Alice. Click the "Approve" button.
+    * **Result:**
+        * Status updates to `PENDING_SECOND_APPROVAL`.
+        * **Visual Feedback:** The card vanishes from Bob's "Pending" list and moves to his "Processed History" list (or simply disappears from the active view).
+
+4.  **Step C: The Second Approver Experience (Finalization):**
+    * **Action:** User switches role to "Charlie (Approver 2)."
+    * **View:** The Dashboard filters to show documents with status `PENDING_SECOND_APPROVAL`.
+    * **Process:** Locate the document. Click the "Final Approve" button.
+    * **Result:**
+        * Status updates to `APPROVED`.
+        * **Visual Feedback:** The badge turns Green.
+        * If Alice (Submitter) logs back in, she now sees her document marked as "Approved."
+
+5.  **Enhance Visual Feedback (Toasts/Alerts):**
+    * Implement a simple notification service (or use a library like `ngx-toastr`).
+    * Show success messages upon state changes:
+        * "Document submitted successfully."
+        * "Document approved. Sent to Second Approver."
+        * "Final Approval granted."
+
+### Technical Checklist
+* [ ] `RoleSwitcherComponent` created and embedded in the layout.
+* [ ] Dashboard `computed` signals or RxJS `selectors` properly filtering based on the active mock user.
+* [ ] Buttons in `DocumentListItem` utilize `ngIf` or `@if` to only show "Approve" when the user has the correct role for the current status.
