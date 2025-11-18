@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Document } from '../models/document.model';
 import { DocumentService } from '../services/document.service';
 import { DocumentStatus } from '../models/document-status.enum';
 
 @Component({
   selector: 'app-document-list-item',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './document-list-item.component.html'
 })
 export class DocumentListItemComponent implements OnInit {

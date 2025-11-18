@@ -8,7 +8,7 @@
   </div>
   <div class="mt-4">
     <label for="user-switcher" class="text-xs text-neutral-500">Switch User</label>
-    <select id="user-switcher" class="w-full mt-1 px-4 py-2 border border-neutral-200 rounded-lg text-sm" (change)="switchUser(users[$event.target.selectedIndex])">
+    <select id="user-switcher" class="w-full mt-1 px-4 py-2 border border-neutral-200 rounded-lg text-sm" (change)="onUserChange($event)">
       @for (user of users; track user.email) {
         <option [value]="user.email" [selected]="user.email === currentUser.email">{{ user.name }}</option>
       }

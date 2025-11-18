@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocumentService } from '../services/document.service';
 import { DocumentStatus } from '../models/document-status.enum';
 
 @Component({
   selector: 'app-document-submission',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './document-submission.component.html'
 })
 export class DocumentSubmissionComponent {
