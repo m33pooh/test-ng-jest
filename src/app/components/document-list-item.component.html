@@ -41,7 +41,7 @@
     </span>
   </td>
   <td class="px-6 py-4">
-    @if (document.status === DocumentStatus.PENDING_FIRST || document.status === DocumentStatus.PENDING_SECOND) {
+    @if ((document.status === DocumentStatus.PENDING_FIRST && currentUser.name === 'First Approver') || (document.status === DocumentStatus.PENDING_SECOND && currentUser.name === 'Second Approver')) {
       <button class="px-3 py-1.5 bg-neutral-900 text-white text-xs rounded hover:bg-neutral-800" (click)="approve()">
         Approve
       </button>

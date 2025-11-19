@@ -1,6 +1,15 @@
 <div class="flex h-screen bg-white">
   <aside id="sidebar" class="w-64 border-r border-neutral-200 flex flex-col">
+    <div class="p-4 border-b border-neutral-200">
+      <a routerLink="/submit" class="w-full bg-neutral-900 text-white rounded-lg text-sm h-10 flex items-center justify-center">
+        New Document
+      </a>
+    </div>
     <app-user-switcher></app-user-switcher>
+    <div class="mt-auto">
+      <app-theme-toggle></app-theme-toggle>
+    </div>
   </aside>
   <router-outlet />
+  <app-toast></app-toast>
 </div>

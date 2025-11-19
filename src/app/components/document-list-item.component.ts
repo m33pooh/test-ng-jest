@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Document } from '../models/document.model';
 import { DocumentService } from '../services/document.service';
 import { DocumentStatus } from '../models/document-status.enum';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-document-list-item',
@@ -13,6 +14,7 @@ import { DocumentStatus } from '../models/document-status.enum';
 export class DocumentListItemComponent implements OnInit {
 
   @Input() document!: Document;
+  @Input() currentUser!: User;
   DocumentStatus = DocumentStatus;
 
   constructor(private documentService: DocumentService) { }
