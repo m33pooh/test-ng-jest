@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { Document } from '../models/document.model';
 import { User } from '../models/user.model';
 import { DocumentStatus } from '../models/document-status.enum';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,8 @@ export class DocumentService {
 
   private users: User[] = [
     { name: 'John Smith', email: 'john.smith@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=101' },
-    { name: 'Sarah Johnson', email: 'sarah.johnson@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=202' },
-    { name: 'Mike Davis', email: 'mike.davis@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=303' },
-    { name: 'Emma Wilson', email: 'emma.wilson@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=404' },
-    { name: 'Robert Brown', email: 'robert.brown@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=505' },
-    { name: 'David Lee', email: 'david.lee@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=606' },
-    { name: 'Lisa Chen', email: 'lisa.chen@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=707' },
-    { name: 'Admin User', email: 'admin@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=42' }
+    { name: 'First Approver', email: 'sarah.johnson@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=202' },
+    { name: 'Second Approver', email: 'mike.davis@company.com', avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?scale=200&seed=303' },
   ];
 
   private documents = signal<Document[]>([
@@ -32,7 +28,7 @@ export class DocumentService {
       name: 'Marketing Strategy.docx',
       size: '1.8 MB',
       type: 'Marketing',
-      submittedBy: this.users[1],
+      submittedBy: this.users[0],
       submittedDate: 'Jan 16, 2025',
       status: DocumentStatus.PENDING_FIRST
     },
@@ -40,7 +36,7 @@ export class DocumentService {
       name: 'Sales Data Q1.xlsx',
       size: '3.1 MB',
       type: 'Sales',
-      submittedBy: this.users[2],
+      submittedBy: this.users[0],
       submittedDate: 'Jan 17, 2025',
       status: DocumentStatus.PENDING_SECOND
     },
@@ -48,7 +44,7 @@ export class DocumentService {
       name: 'HR Policy Update.pdf',
       size: '1.2 MB',
       type: 'HR',
-      submittedBy: this.users[3],
+      submittedBy: this.users[0],
       submittedDate: 'Jan 14, 2025',
       status: DocumentStatus.PENDING_SECOND
     },
@@ -56,7 +52,7 @@ export class DocumentService {
       name: 'Vendor Contract.pdf',
       size: '2.7 MB',
       type: 'Legal',
-      submittedBy: this.users[4],
+      submittedBy: this.users[0],
       submittedDate: 'Jan 15, 2025',
       status: DocumentStatus.APPROVED
     }
@@ -64,7 +60,7 @@ export class DocumentService {
 
   private currentUser = signal<User>(this.users[0]);
 
-  constructor() { }
+  constructor(private toastService: ToastService) { }
 
   getUsers(): User[] {
     return this.users;
@@ -84,23 +80,27 @@ export class DocumentService {
 
   addDocument(document: Document) {
     this.documents.update(docs => [...docs, document]);
+    this.toastService.show('Document submitted successfully.');
   }
 
   firstApprove(document: Document) {
     this.documents.update(docs =>
       docs.map(d => d.name === document.name ? { ...d, status: DocumentStatus.PENDING_SECOND } : d)
     );
+    this.toastService.show('Document approved. Sent to Second Approver.');
   }
 
   secondApprove(document: Document) {
     this.documents.update(docs =>
       docs.map(d => d.name === document.name ? { ...d, status: DocumentStatus.APPROVED } : d)
     );
+    this.toastService.show('Final Approval granted.');
   }
 
   rejectDocument(document: Document) {
     this.documents.update(docs =>
       docs.map(d => d.name === document.name ? { ...d, status: DocumentStatus.REJECTED } : d)
     );
+    this.toastService.show('Document rejected.');
   }
 }

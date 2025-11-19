@@ -15,7 +15,7 @@
     </thead>
     <tbody class="bg-white divide-y divide-neutral-200">
       @for (doc of documents; track doc.name) {
-        <app-document-list-item [document]="doc"></app-document-list-item>
+        <app-document-list-item [document]="doc" [currentUser]="currentUser"></app-document-list-item>
       }
     </tbody>
   </table>
