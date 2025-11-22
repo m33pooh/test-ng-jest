@@ -65,8 +65,8 @@ This phase focuses on "wiring up" the application. We will replace static mock d
 
 3.  **Build the Submission Feature:**
     * Create a `DocumentSubmissionComponent` containing a reactive form.
-    * **Fields:** Title, Description, and a File Input (simulated).
-    * **Logic:** When submitted, this creates a new Document object with the status `PENDING_FIRST_APPROVAL` and pushes it to the `DocumentService` state.
+    * **Fields:** Title (optional if files are selected), Description, and a File Input (simulated, supports multiple files).
+    * **Logic:** When submitted, this creates a new Document object for each selected file (or single document if no file is selected, using Title) with the status `PENDING_FIRST_APPROVAL` and pushes them to the `DocumentService` state as a batch.
 
 4.  **Implement Sequential Workflow Logic:**
     * **Connect Dashboard Actions:** Wire the "Approve" and "Reject" buttons in the `DocumentListItemComponent` to the service logic.
