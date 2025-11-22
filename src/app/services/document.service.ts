@@ -1,4 +1,4 @@
-import { Inject, Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { Document } from '../models/document.model';
 import { User } from '../models/user.model';
 import { DocumentStatus } from '../models/document-status.enum';
@@ -11,14 +11,14 @@ import { DataServiceInterface } from '../models/data-service.interface';
 })
 export class DocumentService {
 
+  private toastService = inject(ToastService);
+  private dataService = inject(DATA_SERVICE_TOKEN);
+
   private users: User[] = [];
   private documents = signal<Document[]>([]);
   private currentUser = signal<User>({} as User);
 
-  constructor(
-    private toastService: ToastService,
-    @Inject(DATA_SERVICE_TOKEN) private dataService: DataServiceInterface
-  ) {
+  constructor() {
     this.users = this.dataService.getUsers();
     this.documents.set(this.dataService.getDocuments());
     if (this.users.length > 0) {

@@ -12,6 +12,7 @@
           Export
         </button>
         <input type="text" placeholder="Search documents..." class="px-4 py-2 border border-neutral-200 rounded-lg text-sm w-64">
+        <a routerLink="/submit" class="px-4 py-2 bg-neutral-900 text-white rounded-lg text-sm hover:bg-neutral-800">New Document</a>
         <button class="px-4 py-2 border border-neutral-200 rounded-lg text-sm hover:bg-neutral-50">
           <i data-fa-i2svg=""></i>
         </button>
@@ -21,27 +22,27 @@
 
   <div class="p-8">
     <!-- Submitter's View -->
-    <ng-container *ngIf="currentUser().name === 'John Smith'">
+    @if (currentUser().name === 'John Smith') {
       <section id="my-submissions" class="mb-8">
         <h2 class="text-xl mb-4">My Submissions</h2>
         <app-document-list [documents]="mySubmissions$()" [currentUser]="currentUser()"></app-document-list>
       </section>
-    </ng-container>
+    }
 
     <!-- First Approver's View -->
-    <ng-container *ngIf="currentUser().name === 'First Approver'">
+    @if (currentUser().name === 'First Approver') {
       <section id="pending-first-approval" class="mb-8">
         <h2 class="text-xl mb-4">Pending First Approval</h2>
         <app-document-list [documents]="pendingFirstApproval$()" [currentUser]="currentUser()"></app-document-list>
       </section>
-    </ng-container>
+    }
 
     <!-- Second Approver's View -->
-    <ng-container *ngIf="currentUser().name === 'Second Approver'">
+    @if (currentUser().name === 'Second Approver') {
       <section id="pending-second-approval">
         <h2 class="text-xl mb-4">Pending Second Approval</h2>
         <app-document-list [documents]="pendingSecondApproval$()" [currentUser]="currentUser()"></app-document-list>
       </section>
-    </ng-container>
+    }
   </div>
 </main>

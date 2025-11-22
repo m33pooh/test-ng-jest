@@ -1,5 +1,6 @@
-import { Component, computed, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { Document } from '../models/document.model';
 import { User } from '../models/user.model';
 import { DocumentService } from '../services/document.service';
@@ -9,19 +10,19 @@ import { DocumentListComponent } from './document-list.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, DocumentListComponent],
+  imports: [CommonModule, DocumentListComponent, RouterLink],
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
 
-  currentUser: Signal<User>;
+  private documentService = inject(DocumentService);
+
+  currentUser: Signal<User> = this.documentService.getCurrentUser();
   pendingFirstApproval$: Signal<Document[]>;
   pendingSecondApproval$: Signal<Document[]>;
   mySubmissions$: Signal<Document[]>;
 
-  constructor(private documentService: DocumentService) {
-    this.currentUser = this.documentService.getCurrentUser();
-
+  constructor() {
     const allDocs = this.documentService.getDocuments();
 
     this.pendingFirstApproval$ = computed(() =>

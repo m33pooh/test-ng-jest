@@ -1,8 +1,12 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard.component';
-import { DocumentSubmissionComponent } from './components/document-submission.component';
 
 export const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'submit', component: DocumentSubmissionComponent }
+  {
+    path: '',
+    loadComponent: () => import('./components/dashboard.component').then(m => m.DashboardComponent)
+  },
+  {
+    path: 'submit',
+    loadComponent: () => import('./components/document-submission.component').then(m => m.DocumentSubmissionComponent)
+  }
 ];

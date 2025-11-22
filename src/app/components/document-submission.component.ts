@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,19 +14,15 @@ import { Document } from '../models/document.model';
 })
 export class DocumentSubmissionComponent {
 
-  submissionForm: FormGroup;
-  selectedFiles: FileList | null = null;
+  private fb = inject(FormBuilder);
+  private documentService = inject(DocumentService);
+  private router = inject(Router);
 
-  constructor(
-    private fb: FormBuilder,
-    private documentService: DocumentService,
-    private router: Router
-  ) {
-    this.submissionForm = this.fb.group({
-      title: [''], // Title is optional if files are selected
-      description: ['', Validators.required]
-    });
-  }
+  submissionForm: FormGroup = this.fb.group({
+    title: [''], // Title is optional if files are selected
+    description: ['', Validators.required]
+  });
+  selectedFiles: FileList | null = null;
 
   onFileSelected(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
