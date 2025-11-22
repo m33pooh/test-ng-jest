@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Document } from '../models/document.model';
 import { DocumentService } from '../services/document.service';
@@ -15,11 +15,18 @@ export class DocumentListItemComponent implements OnInit {
 
   @Input() document!: Document;
   @Input() currentUser!: User;
+  @Input() selected = false;
+  @Output() selectedChange = new EventEmitter<boolean>();
   DocumentStatus = DocumentStatus;
 
   constructor(private documentService: DocumentService) { }
 
   ngOnInit(): void {
+  }
+
+  onCheckboxChange(event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.selectedChange.emit(checked);
   }
 
   approve() {

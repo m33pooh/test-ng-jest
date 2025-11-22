@@ -1,6 +1,6 @@
-<tr class="hover:bg-neutral-50">
+<tr class="hover:bg-neutral-50" [class.bg-neutral-100]="selected">
   <td class="px-6 py-4">
-    <input type="checkbox" class="rounded border-neutral-300">
+    <input type="checkbox" class="rounded border-neutral-300" [checked]="selected" (change)="onCheckboxChange($event)">
   </td>
   <td class="px-6 py-4">
     <div class="flex items-center gap-3">
