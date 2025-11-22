@@ -4,6 +4,45 @@
 
 This application provides a streamlined system for managing a multi-step document approval process. It's designed for teams where documents require sequential review and sign-off from different authority levels. The workflow ensures that a document is reviewed and approved by a "First Approver" before it can be reviewed and approved by a "Second Approver," creating a clear and auditable trail.
 
+## Codebase Overview
+
+This project is an Angular application with a clear separation of concerns.
+
+### Application Structure (`src/app`)
+*   **Core Application Files**:
+    *   `app.config.ts`: Application-wide configuration.
+    *   `app.css`: Global application styles.
+    *   `app.html`: Main application template.
+    *   `app.routes.ts`: Defines the application's routes.
+    *   `app.ts`: Root component of the application.
+*   **Components (`src/app/components`)**:
+    *   `dashboard.component.ts/.html`: Displays the main dashboard for users.
+    *   `document-list-item.component.ts/.html`: Renders a single document entry.
+    *   `document-list.component.ts/.html`: Displays a list of documents.
+    *   `document-submission.component.ts/.html`: Handles document submission.
+    *   `theme-toggle.component.ts`: Component for switching themes.
+    *   `toast.component.ts`: Displays toast notifications.
+    *   `user-switcher.component.ts/.html`: Allows switching between user roles.
+*   **Models (`src/app/models`)**:
+    *   `data-service.interface.ts`: Interface for data services.
+    *   `document-status.enum.ts`: Enum defining document approval statuses.
+    *   `document.model.ts`: Interface/class for document data structure.
+    *   `user.model.ts`: Interface/class for user data structure.
+*   **Services (`src/app/services`)**:
+    *   `api.service.ts`: Handles API interactions.
+    *   `document.service.ts`: Manages document-related operations and state.
+    *   `mock-api.service.ts`: Provides mock data for development/testing.
+    *   `theme.service.ts`: Manages application themes.
+    *   `toast.service.ts`: Manages toast notifications.
+
+### Configuration Files
+*   `angular.json`: Angular CLI configuration.
+*   `jest.config.js`: Jest testing framework configuration.
+*   `package.json`: Project dependencies and scripts.
+*   `tsconfig.json`, `tsconfig.app.json`, `tsconfig.spec.json`: TypeScript configurations.
+*   `tailwind.config.js`, `postcss.config.js`: Tailwind CSS and PostCSS configurations.
+
+
 ## Style, Design, and Features
 
 ### Core Roles
